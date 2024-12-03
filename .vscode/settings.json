@@ -2,4 +2,9 @@
     "cSpell.words": [
         "strncopy"
     ],
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+        "clang-diagnostic-builtin-requires-header",
+        "clang-diagnostic-implicit-function-declaration"
+    ]
 }
