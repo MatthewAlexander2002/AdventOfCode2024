@@ -77,8 +77,23 @@ int main() {
             }
         }
 
-        if (is_legal) {
-            total += curr_page[array_size/2];
+        if (!is_legal) {
+            // total += curr_page[array_size/2];
+            for (int i = 1; i < array_size; i++) {
+                for(int j = 0; j < count; j++) {
+                    if(curr_page[i] == pairs[j].first){
+                        for(int k = i; k >= 0; k--){
+                            if(curr_page[k] == pairs[j].second){
+                                // is_legal = 0;
+                                
+                            }
+
+                            //if there is more than 1 update set i = 1
+                        }
+                    }
+                }
+            }
+            total += curr_page[array_size / 2];
         }
         printf("%d\n", total);
     }
