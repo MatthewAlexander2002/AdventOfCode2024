@@ -8,6 +8,8 @@
 #define SEC1 1176
 #define SEC2 194
 
+void move_num(int curr_page[30], int to_move, int where_to);
+
 struct Pair {
     int first;
     int second;
@@ -29,6 +31,7 @@ int main() {
     char line2[SIZE2+2];
     struct Pair pairs[SEC1];
     int total = 0;
+    // int iter = 0;
 
     file1 = fopen("Day5/data.txt", "r");
     if (file1 == NULL) {
@@ -72,31 +75,51 @@ int main() {
                         if(curr_page[k] == pairs[j].second){
                             is_legal = 0;
                         }
+                        // iter++;
                     }
+                    // iter++;
                 }
+                // iter++;
             }
+            // iter++;
         }
+        // printf("First Loop  %d\n", iter);
 
         if (!is_legal) {
-            // total += curr_page[array_size/2];
             for (int i = 1; i < array_size; i++) {
                 for(int j = 0; j < count; j++) {
                     if(curr_page[i] == pairs[j].first){
                         for(int k = i; k >= 0; k--){
                             if(curr_page[k] == pairs[j].second){
-                                // is_legal = 0;
-                                
+                                move_num(curr_page, k, i);
+                                i = 1;
+                                break;
                             }
-
-                            //if there is more than 1 update set i = 1
+                            // iter++;
                         }
+                        // iter++;
                     }
+                    // iter++;
                 }
+                // iter++;
             }
             total += curr_page[array_size / 2];
         }
-        printf("%d\n", total);
+        // printf("Second Loop %d\n", iter);
+        // printf("%d\n", total);
     }
 
+    printf("%d\n", total);
+    // printf("%d\n", iter);
     return 0;
+}
+
+void move_num(int curr_page[30], int to_move, int where_to) {
+    if (to_move < where_to) {
+        int temp = curr_page[to_move];
+        for (int i = to_move; i < where_to; i++) {
+            curr_page[i] = curr_page[i + 1];
+        }
+        curr_page[where_to] = temp;
+    }
 }
